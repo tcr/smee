@@ -1,0 +1,11 @@
+{
+  "name": "smee",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/tcr/smee",
+  "author": "Tim Cameron Ryan",
+  "license": "MIT",
+  "dependencies": {
+    "nconf": "~0.6.7"
+  }
+}
