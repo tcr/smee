@@ -12,6 +12,10 @@ smee.persistentHook(function (err, hook) {
 });
 ```
 
+## Installation
+
+    npm install smee
+
 ## Requirements
 
 Install [localtunnel](https://github.com/progrium/localtunnel):
