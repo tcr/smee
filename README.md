@@ -5,12 +5,14 @@ Create a webhook locally which persists between script runs, with no configurati
 ```
 var smee = require('smee');
 smee.persistentHook(function (err, hook) {
-  console.log('Your webhook URL:', hook.url);
+  console.log('Your webhook URL:', hook.url); // same URL on next run
   hook.on('callback', function (json) {
     console.log('Received webhook:', json);
   });
 });
 ```
+
+Hook configuration is stored in a local .smeeconf file in your script directory and is different between scripts.
 
 ## Installation
 
