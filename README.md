@@ -34,6 +34,8 @@ Install [localtunnel](https://github.com/progrium/localtunnel):
 
     pip install localtunnel
 
+And possible [donate to localtunnel](http://j.mp/donate-localtunnel) for being such an awesome project.
+
 ## License
 
 MIT
