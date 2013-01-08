@@ -26,16 +26,16 @@ The default port is `9009`. If this is conflicting, change it by setting `port: 
 
 ## Installation
 
-    npm install smee
-
-## Requirements
-
 Install [localtunnel](https://github.com/progrium/localtunnel):
 
     pip install localtunnel
 
-And possible [donate to localtunnel](http://j.mp/donate-localtunnel) for being such an awesome project.
+Then:
 
-## License
+    npm install smee
 
-MIT
+## License & Credits
+
+Smee is MIT licensed.
+
+And if you're feeling good today, [donate to localtunnel](http://j.mp/donate-localtunnel) for being such an awesome project.
