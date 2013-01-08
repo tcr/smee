@@ -14,11 +14,15 @@ smee.persistentHook(function (err, hook) {
 
 Hook configuration is stored in a local `.smeeconf` file in your script directory and is different between scripts.
 
+## Options
+
 If your webhook call is being sent incorrectly from the server (as form or text data), set `json: true` in the options:
 
 ```javascript
 smee.persistentHook({json: true}, function (err, hook) { ... })
 ```
+
+The default port is `9009`. If this is conflicting, change it by setting `port: ...` in the options.
 
 ## Installation
 

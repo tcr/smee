@@ -7,8 +7,6 @@ var express = require('express')
 
 nconf.file('.smeeconf');
 
-var PORT = 9009;
-
 util.inherits(Hook, EventEmitter);
 
 function Hook () {
@@ -19,6 +17,7 @@ exports.persistentHook = function (opts, callback) {
 
   var hook = new Hook();
   var name = 'smee' + String(Math.random()).substr(2);
+  var port = (opts.PORT || 9009);
 
   if (!nconf.get('tunnel')) {
     nconf.set('tunnel', name);
@@ -49,8 +48,8 @@ exports.persistentHook = function (opts, callback) {
       res.send('Webhook accepted. Have a nice day <3');
     })
 
-    app.listen(PORT, function () {
-      hook.local = 'http://localhost:' + PORT;
+    app.listen(port, function () {
+      hook.local = 'http://localhost:' + port;
       startTunnel();
     });
   }
@@ -67,7 +66,7 @@ exports.persistentHook = function (opts, callback) {
   }
 
   function startTunnel () {
-    var lt = spawn('localtunnel-beta', ['-n', name, '9009'], {
+    var lt = spawn('localtunnel-beta', ['-n', name, port], {
       env: augment(clone(process.env), {'PYTHONUNBUFFERED': 'x'})
     });
     lt.stdout.on('data', function (data) {
