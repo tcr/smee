@@ -12,6 +12,28 @@ util.inherits(Hook, EventEmitter);
 function Hook () {
 }
 
+exports.hook = function (opts, callback) {
+  if (!callback) callback = opts, opts = {};
+
+  return function (req, res, next) {
+    if (req.method != 'POST') {
+      return next();
+    }
+    var data = '';
+    req.setEncoding('utf8');
+    req.on('data', function(chunk) { 
+      data += chunk;
+    });
+    req.on('end', function() {
+      callback(opts.json ? JSON.parse(data) : req.body, req);
+      res.send('');
+    });
+
+    // Parse form or JSON body.
+    express.bodyParser()(req, res, function () { });
+  };
+};
+
 exports.persistentHook = function (opts, callback) {
   if (!callback) callback = opts, opts = {};
 
@@ -30,23 +52,7 @@ exports.persistentHook = function (opts, callback) {
   function startServer () {
     var app = express();
 
-    app.use(function(req, res, next) {
-      var data = '';
-      req.setEncoding('utf8');
-      req.on('data', function(chunk) { 
-        data += chunk;
-      });
-      req.on('end', function() {
-        req.rawBody = data;
-      });
-      next();
-    });
-    app.use(express.bodyParser());
-
-    app.post('/', function (req, res) {
-      hook.emit('callback', opts.json ? JSON.parse(req.rawBody) : req.body);
-      res.send('Webhook accepted. Have a nice day <3');
-    })
+    app.use('/', exports.hook(opts, hook.emit.bind(hook, 'callback')));
 
     app.listen(port, function () {
       hook.local = 'http://localhost:' + port;

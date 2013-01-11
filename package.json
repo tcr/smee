@@ -1,6 +1,6 @@
 {
   "name": "smee",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": "index.js",
   "repository": "https://github.com/tcr/smee",
   "author": "Tim Cameron Ryan",
