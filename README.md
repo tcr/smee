@@ -1,4 +1,4 @@
-# smee, persistent local webhooks
+# <img src="http://game-icons.net/icons/lorc/originals/png/fishing-hook.png" width="32"> smee, persistent local webhooks
 
 Create a webhook locally which persists between script runs, with no configuration required.
 
